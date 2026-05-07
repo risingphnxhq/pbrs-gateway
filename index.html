@@ -7,51 +7,51 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#050505;
       --bg-soft:#0b0b0c;
-      --panel:#0d0f13;
-      --panel-2:#11141a;
+      --panel:rgba(13,15,19,0.58);
+      --panel-2:rgba(17,20,26,0.62);
       --text:#f3f4f6;
       --muted:#a8afb8;
       --muted-2:#7f8791;
       --gold:#c9a227;
-      --line:#232831;
-      --line-2:#1b1f26;
+      --line:rgba(255,255,255,0.10);
+      --line-2:rgba(255,255,255,0.06);
+      --blue:#74a6ff;
+      --green:#42e69b;
+      --red:#ff766d;
       --blue-glow:rgba(49,95,188,0.16);
     }
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+    *{box-sizing:border-box;margin:0;padding:0;}
 
-    html, body{
+    html,body{
       width:100%;
       min-height:100%;
       background:var(--bg);
       color:var(--text);
-      font-family:"Inter", Arial, sans-serif;
+      font-family:"Inter",Arial,sans-serif;
     }
 
     body{
       background:
         radial-gradient(circle at 50% 18%, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0.02) 18%, rgba(0,0,0,0) 44%),
         radial-gradient(circle at 50% 58%, var(--blue-glow) 0%, rgba(49,95,188,0.05) 24%, rgba(0,0,0,0) 58%),
-        linear-gradient(180deg, #090909 0%, #060606 100%);
+        linear-gradient(180deg,#090909 0%,#060606 100%);
     }
 
     .page{
       position:relative;
       min-height:100vh;
       overflow:hidden;
+      padding-bottom:34px;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 100%),
-        linear-gradient(180deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 100%);
+        linear-gradient(90deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 100%);
       background-size:120px 120px;
     }
 
@@ -59,25 +59,25 @@
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 15%, rgba(255,255,255,0.00) 85%, rgba(255,255,255,0.02) 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,0.022) 0%, rgba(255,255,255,0.00) 16%, rgba(255,255,255,0.00) 82%, rgba(255,255,255,0.022) 100%);
       pointer-events:none;
+      z-index:1;
     }
 
     .seal{
       position:absolute;
-      top:30px;
-      left:36px;
-      width:112px;
+      top:40px;
+      left:46px;
+      width:150px;
       height:auto;
-      opacity:0.96;
-      filter:drop-shadow(0 0 14px rgba(201,162,39,0.08));
+      opacity:0.98;
+      filter:drop-shadow(0 0 18px rgba(201,162,39,0.18)) drop-shadow(0 0 34px rgba(49,95,188,0.10));
       z-index:4;
     }
 
     .system-label{
       position:absolute;
-      top:42px;
+      top:48px;
       left:50%;
       transform:translateX(-50%);
       text-align:center;
@@ -86,20 +86,20 @@
     }
 
     .system-kicker{
-      font-family:"Cinzel", serif;
+      font-family:"Cinzel",serif;
       font-size:13px;
-      letter-spacing:0.26em;
+      letter-spacing:0.34em;
       text-transform:uppercase;
       color:#cfd4da;
-      opacity:0.82;
+      opacity:0.84;
     }
 
     .shell{
       position:relative;
       z-index:2;
-      width:min(1380px, 94vw);
+      width:min(1380px,94vw);
       margin:0 auto;
-      padding:120px 0 40px;
+      padding:150px 0 0;
     }
 
     .hero{
@@ -108,94 +108,108 @@
     }
 
     .headline{
-      font-family:"Cinzel", serif;
-      font-size:clamp(26px, 2.6vw, 46px);
+      font-family:"Cinzel",serif;
+      font-size:clamp(30px,3vw,50px);
       line-height:1.06;
-      letter-spacing:0.04em;
+      letter-spacing:0.05em;
       text-transform:uppercase;
       font-weight:600;
-      max-width:1100px;
-      margin:0 auto 18px;
-      background:linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #eef2f6 28%,
-        #cfd6dd 48%,
-        #f5f7fa 68%,
-        #bfc6cd 100%
-      );
+      max-width:1120px;
+      margin:0 auto 16px;
+      background:linear-gradient(180deg,#ffffff 0%,#eef2f6 28%,#cfd6dd 48%,#f5f7fa 68%,#bfc6cd 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      text-shadow:
-        0 1px 0 rgba(255,255,255,0.18),
-        0 10px 20px rgba(0,0,0,0.52),
-        0 0 28px rgba(70,120,200,0.08);
+      text-shadow:0 1px 0 rgba(255,255,255,0.18),0 10px 20px rgba(0,0,0,0.52),0 0 28px rgba(70,120,200,0.10);
     }
 
     .subline{
-      font-size:clamp(16px, 1.15vw, 20px);
-      line-height:1.5;
+      font-size:clamp(15px,1.05vw,18px);
+      line-height:1.55;
       color:var(--muted);
-      max-width:760px;
-      margin:0 auto 22px;
+      max-width:860px;
+      margin:0 auto 16px;
+      font-weight:500;
     }
 
     .price{
-      font-family:"Cinzel", serif;
-      font-size:clamp(20px, 1.6vw, 28px);
+      font-family:"Cinzel",serif;
+      font-size:clamp(18px,1.45vw,25px);
       line-height:1.1;
-      letter-spacing:0.08em;
+      letter-spacing:0.10em;
       text-transform:uppercase;
       color:var(--gold);
-      margin-bottom:24px;
       font-weight:600;
+      text-shadow:0 0 18px rgba(201,162,39,0.20);
     }
 
     .workspace{
       display:grid;
-      grid-template-columns:minmax(0, 1fr) 320px;
+      grid-template-columns:minmax(0,1fr) 320px;
       gap:28px;
       align-items:start;
     }
 
     .main-panel{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,0.024) 0%, rgba(255,255,255,0.012) 100%);
       border:1px solid var(--line);
       padding:28px;
       min-height:560px;
       backdrop-filter:blur(4px);
     }
 
-    .panel-kicker{
+    .panel-kicker,.section-kicker{
       font-size:11px;
-      letter-spacing:0.18em;
+      letter-spacing:0.22em;
       text-transform:uppercase;
       color:var(--muted-2);
       margin-bottom:14px;
+      font-weight:700;
     }
 
     .intake-title{
-      font-family:"Cinzel", serif;
-      font-size:24px;
-      letter-spacing:0.05em;
+      font-family:"Cinzel",serif;
+      font-size:28px;
+      letter-spacing:0.055em;
       text-transform:uppercase;
-      margin-bottom:10px;
+      margin-bottom:14px;
       color:var(--text);
+      text-shadow:0 0 18px rgba(49,95,188,0.16);
     }
 
     .intake-sub{
       font-size:15px;
-      line-height:1.55;
+      line-height:1.62;
       color:var(--muted);
       margin-bottom:24px;
-      max-width:720px;
+      max-width:940px;
+      font-weight:500;
+    }
+
+    .import-banner{
+      display:none;
+      border:1px solid rgba(66,230,155,0.35);
+      background:rgba(66,230,155,0.06);
+      padding:14px 16px;
+      margin-bottom:22px;
+      color:#d7ffe8;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:700;
+    }
+
+    .import-banner.show{display:block;}
+
+    .form-section{
+      border:1px solid var(--line-2);
+      background:rgba(255,255,255,0.018);
+      padding:20px;
+      margin-bottom:18px;
     }
 
     .intake-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:18px;
-      margin-bottom:24px;
     }
 
     .field{
@@ -204,87 +218,102 @@
       gap:8px;
     }
 
-    .field.full{
-      grid-column:1 / -1;
-    }
+    .field.full{grid-column:1/-1;}
 
-    .field label{
+    label{
       font-size:11px;
-      letter-spacing:0.14em;
+      letter-spacing:0.16em;
       text-transform:uppercase;
-      color:var(--muted-2);
+      color:#74a6ff;
+      font-weight:800;
     }
 
-    .field input,
-    .field select,
-    .field textarea{
+    input,select,textarea{
       width:100%;
-      background:var(--panel);
+      background:rgba(13,15,19,0.58);
       color:var(--text);
-      border:1px solid var(--line-2);
+      border:1px solid var(--line);
       padding:14px 14px;
       font-size:15px;
-      font-family:"Inter", Arial, sans-serif;
+      font-family:"Inter",Arial,sans-serif;
       outline:none;
       border-radius:0;
+      font-weight:600;
     }
 
-    .field textarea{
-      min-height:120px;
+    textarea{
+      min-height:118px;
       resize:vertical;
+      line-height:1.55;
     }
 
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus{
-      border-color:rgba(201,162,39,0.55);
+    input:focus,select:focus,textarea:focus{
+      border-color:rgba(201,162,39,0.72);
+      box-shadow:0 0 0 1px rgba(201,162,39,0.12);
     }
 
     .actions{
       display:flex;
       align-items:center;
-      gap:14px;
-      margin-top:8px;
+      gap:16px;
+      margin-top:22px;
+      flex-wrap:wrap;
     }
 
     .cta{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:240px;
+      min-width:270px;
       padding:16px 28px;
       border:1px solid var(--gold);
       color:var(--text);
       text-decoration:none;
       text-transform:uppercase;
-      font-family:"Cinzel", serif;
-      font-size:15px;
+      font-family:"Cinzel",serif;
+      font-size:14px;
       letter-spacing:0.12em;
       background:rgba(255,255,255,0.01);
-      transition:background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+      transition:background-color .18s ease,color .18s ease,transform .18s ease;
       cursor:pointer;
+      font-weight:700;
     }
 
     .cta:hover{
       background:var(--gold);
       color:#111;
-      border-color:var(--gold);
       transform:translateY(-1px);
     }
 
     .micro-note{
       font-size:11px;
-      line-height:1.5;
-      color:#68707a;
-      max-width:420px;
+      line-height:1.55;
+      color:#7f8791;
+      max-width:480px;
     }
 
+    .error-box{
+      display:none;
+      border-left:3px solid var(--red);
+      padding:12px 14px;
+      background:rgba(255,118,109,0.07);
+      color:#ffd6d2;
+      font-size:13px;
+      line-height:1.5;
+      margin-top:16px;
+      font-weight:700;
+    }
+
+    .error-box.show{display:block;}
+
     .nace-rail{
-      background:var(--bg-soft);
+      background:rgba(11,11,12,0.70);
       border:1px solid var(--line);
       min-height:560px;
       padding:22px 20px;
-      position:relative;
+      position:sticky;
+      top:18px;
+      backdrop-filter:blur(4px);
     }
 
     .nace-rail::before{
@@ -294,64 +323,62 @@
       left:0;
       width:1px;
       height:100%;
-      background:rgba(201,162,39,0.12);
+      background:rgba(201,162,39,0.16);
     }
 
     .nace-label{
       font-size:11px;
-      letter-spacing:0.18em;
+      letter-spacing:0.20em;
       text-transform:uppercase;
-      color:var(--muted-2);
-      margin-bottom:8px;
+      color:#74a6ff;
+      margin-bottom:9px;
+      font-weight:700;
     }
 
     .nace-title{
-      font-family:"Cinzel", serif;
-      font-size:17px;
+      font-family:"Cinzel",serif;
+      font-size:18px;
       letter-spacing:0.08em;
       text-transform:uppercase;
       color:var(--text);
       margin-bottom:18px;
-    }
-
-    .nace-block{
-      margin-bottom:22px;
+      line-height:1.2;
     }
 
     .nace-copy{
-      font-size:15px;
+      font-size:14px;
       line-height:1.62;
       color:#e8e8ea;
+      font-weight:600;
+      margin-bottom:18px;
     }
 
     .language-row{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:14px;
+      margin-top:16px;
     }
 
     .lang-btn{
       background:transparent;
       color:var(--text);
       border:1px solid var(--line);
-      padding:6px 10px;
+      padding:7px 10px;
       font-size:12px;
-      letter-spacing:0.06em;
+      letter-spacing:0.04em;
       cursor:pointer;
-    }
-
-    .lang-btn:hover{
-      background:#111;
+      font-weight:600;
     }
 
     .state-line{
-      font-size:12px;
-      line-height:1.5;
+      font-size:13px;
+      line-height:1.55;
       color:var(--muted);
       border-top:1px solid var(--line);
       padding-top:16px;
-      margin-top:8px;
+      margin-top:18px;
+      font-weight:600;
     }
 
     .stack-bar{
@@ -361,9 +388,10 @@
       gap:16px;
       padding:14px 24px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,0.02);
-      width:min(860px, 94%);
+      background:rgba(255,255,255,0.024);
+      width:min(860px,94%);
       margin:26px auto 0;
+      backdrop-filter:blur(6px);
     }
 
     .stack-label{
@@ -372,6 +400,7 @@
       text-transform:uppercase;
       color:var(--muted-2);
       white-space:nowrap;
+      font-weight:800;
     }
 
     .stack-flow{
@@ -380,136 +409,78 @@
       justify-content:center;
       gap:10px;
       flex-wrap:wrap;
-      font-family:"Cinzel", serif;
+      font-family:"Cinzel",serif;
       font-size:14px;
       letter-spacing:0.08em;
       text-transform:uppercase;
-      color:#8d949d;
+      color:rgba(255,255,255,0.72);
+      font-weight:700;
     }
 
     .stack-flow .active{
       color:var(--gold);
+      text-shadow:0 0 12px rgba(201,162,39,0.32);
     }
 
     .stack-flow .arrow{
       color:#525964;
-      font-family:"Inter", Arial, sans-serif;
+      font-family:"Inter",Arial,sans-serif;
       font-size:15px;
       letter-spacing:normal;
     }
 
     .footer{
+      width:min(860px,94%);
+      margin:18px auto 0;
+      padding:8px 0 0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
       text-align:center;
-      font-size:11px;
+      font-size:10px;
       color:#7b828c;
-      letter-spacing:0.06em;
-      width:100%;
-      padding:22px 0 8px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      font-size:10px;
+      color:#7b828c;
+      letter-spacing:0.04em;
+      line-height:1.5;
     }
 
     .footer a{
       color:#9ba3ad;
       text-decoration:none;
+      font-size:10px;
     }
 
-    .footer a:hover{
-      color:#cfd4da;
+    @media(max-width:1080px){
+      .workspace{grid-template-columns:1fr;}
+      .nace-rail{order:-1;position:relative;top:auto;min-height:auto;}
+      .main-panel{min-height:auto;}
     }
 
-    @media (max-width: 1080px){
-      .workspace{
-        grid-template-columns:1fr;
-      }
-
-      .nace-rail,
-      .main-panel{
-        min-height:auto;
-      }
-
-      .nace-rail{
-        order:-1;
-      }
-    }
-
-    @media (max-width: 780px){
-      .seal{
-        top:22px;
-        left:20px;
-        width:84px;
-      }
-
-      .system-label{
-        top:26px;
-        width:100%;
-        padding:0 90px 0 104px;
-      }
-
-      .system-kicker{
-        font-size:10px;
-        letter-spacing:0.18em;
-      }
-
-      .shell{
-        padding:96px 0 28px;
-      }
-
-      .hero{
-        margin-bottom:24px;
-      }
-
-      .headline{
-        font-size:clamp(24px, 6.5vw, 34px);
-        margin-bottom:14px;
-      }
-
-      .subline{
-        font-size:15px;
-        margin-bottom:18px;
-      }
-
-      .price{
-        font-size:20px;
-        margin-bottom:20px;
-      }
-
-      .main-panel{
-        padding:20px 16px;
-      }
-
-      .intake-grid{
-        grid-template-columns:1fr;
-      }
-
-      .actions{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .cta{
-        min-width:100%;
-      }
-
-      .nace-rail{
-        padding:18px 16px;
-      }
-
-      .stack-bar{
-        flex-direction:column;
-        gap:8px;
-        padding:14px 16px;
-      }
-
-      .stack-label{
-        font-size:10px;
-      }
-
-      .stack-flow{
-        font-size:12px;
-        gap:8px;
-      }
+    @media(max-width:780px){
+      .seal{top:24px;left:22px;width:104px;}
+      .system-label{top:30px;width:100%;padding:0 90px 0 116px;}
+      .system-kicker{font-size:10px;letter-spacing:0.18em;}
+      .shell{padding:106px 0 28px;}
+      .headline{font-size:clamp(25px,7vw,34px);}
+      .main-panel{padding:20px 16px;}
+      .intake-grid{grid-template-columns:1fr;}
+      .actions{flex-direction:column;align-items:flex-start;}
+      .cta{width:100%;min-width:100%;}
+      .stack-bar{flex-direction:column;gap:8px;padding:14px 16px;}
+      .stack-flow{font-size:12px;}
     }
   </style>
 </head>
+
 <body>
   <main class="page">
     <img src="phoenix-os-logo.png" alt="Phoenix OS Seal" class="seal" />
@@ -521,89 +492,258 @@
     <div class="shell">
       <section class="hero">
         <h1 class="headline">Phoenix Business Readiness Snapshot</h1>
-
         <p class="subline">
-          Private-access diagnostic for operators evaluating structure, stability, and execution readiness.
+          Private-access diagnostic for operators evaluating structure, stability, risk exposure, and execution readiness.
         </p>
-
         <div class="price">$99 · Private Release</div>
       </section>
 
       <section class="workspace">
         <div class="main-panel">
-          <div class="panel-kicker">PBRS Intake</div>
-          <h2 class="intake-title">Begin Evaluation</h2>
+          <div class="panel-kicker">PBRS Diagnostic Intake</div>
+          <h2 class="intake-title">Continue Evaluation</h2>
           <p class="intake-sub">
-            Complete the structured intake below. Your submission will proceed through controlled institutional review.
+            PBRS expands beyond QuickScore. Foundational profile data is imported when available; the remaining fields probe operational depth, financial control, risk exposure, and execution readiness.
           </p>
 
-          <form>
-            <div class="intake-grid">
-              <div class="field">
-                <label for="legal_name">Legal Name</label>
-                <input id="legal_name" type="text" placeholder="Enter legal business name">
-              </div>
+          <div id="importBanner" class="import-banner">
+            Imported QuickScore profile detected. Foundational business fields have been pre-filled for continuity.
+          </div>
 
-              <div class="field">
-                <label for="entity_type">Entity Type</label>
-                <select id="entity_type">
-                  <option>Select entity type</option>
-                  <option>LLC</option>
-                  <option>Corporation</option>
-                  <option>Nonprofit</option>
-                  <option>Sole Proprietorship</option>
-                </select>
-              </div>
+          <form id="pbrsForm">
+            <div class="form-section">
+              <div class="section-kicker">Imported / Foundational Profile</div>
 
-              <div class="field">
-                <label for="state_country">State / Country</label>
-                <input id="state_country" type="text" placeholder="Enter jurisdiction">
-              </div>
+              <div class="intake-grid">
+                <div class="field">
+                  <label for="legal_name">Legal Business Name</label>
+                  <input id="legal_name" type="text" placeholder="Enter legal business name" required>
+                </div>
 
-              <div class="field">
-                <label for="revenue_band">Revenue Band</label>
-                <select id="revenue_band">
-                  <option>Select revenue band</option>
-                  <option>Pre-Revenue</option>
-                  <option>Under $100K</option>
-                  <option>$100K–$500K</option>
-                  <option>$500K–$1M</option>
-                  <option>$1M+</option>
-                </select>
-              </div>
+                <div class="field">
+                  <label for="entity_type">Entity Type</label>
+                  <select id="entity_type" required>
+                    <option value="">Select entity type</option>
+                    <option>LLC</option>
+                    <option>Corporation</option>
+                    <option>Nonprofit</option>
+                    <option>Sole Proprietorship</option>
+                    <option>Partnership</option>
+                  </select>
+                </div>
 
-              <div class="field">
-                <label for="reporting_cadence">Reporting Cadence</label>
-                <select id="reporting_cadence">
-                  <option>Select cadence</option>
-                  <option>Monthly</option>
-                  <option>Quarterly</option>
-                  <option>Annually</option>
-                  <option>Not Formalized</option>
-                </select>
-              </div>
+                <div class="field">
+                  <label for="state_country">State / Country</label>
+                  <input id="state_country" type="text" placeholder="Enter jurisdiction" required>
+                </div>
 
-              <div class="field">
-                <label for="ops_structure_flag">Operations Structure</label>
-                <select id="ops_structure_flag">
-                  <option>Select current state</option>
-                  <option>Formalized</option>
-                  <option>Partial</option>
-                  <option>Informal</option>
-                </select>
-              </div>
+                <div class="field">
+                  <label for="revenue_band">Revenue Band</label>
+                  <select id="revenue_band" required>
+                    <option value="">Select revenue band</option>
+                    <option>Pre-Revenue</option>
+                    <option>Under $100K</option>
+                    <option>$100K–$500K</option>
+                    <option>$500K–$1M</option>
+                    <option>$1M+</option>
+                  </select>
+                </div>
 
-              <div class="field full">
-                <label for="primary_goal">Primary Objective</label>
-                <textarea id="primary_goal" placeholder="State your current objective."></textarea>
+                <div class="field">
+                  <label for="reporting_cadence">Reporting Cadence</label>
+                  <select id="reporting_cadence" required>
+                    <option value="">Select cadence</option>
+                    <option>Monthly</option>
+                    <option>Quarterly</option>
+                    <option>Annually</option>
+                    <option>Not Formalized</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="ops_structure_flag">Operations Structure</label>
+                  <select id="ops_structure_flag" required>
+                    <option value="">Select current state</option>
+                    <option>Formalized</option>
+                    <option>Partial</option>
+                    <option>Informal</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="primary_goal">Primary Objective</label>
+                  <textarea id="primary_goal" placeholder="State your current objective." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">Financial Control Probe</div>
+
+              <div class="intake-grid">
+                <div class="field">
+                  <label for="business_bank">Business Banking</label>
+                  <select id="business_bank" required>
+                    <option value="">Select state</option>
+                    <option>Dedicated business bank account</option>
+                    <option>Mixed personal/business funds</option>
+                    <option>No business banking yet</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="bookkeeping">Bookkeeping Method</label>
+                  <select id="bookkeeping" required>
+                    <option value="">Select method</option>
+                    <option>Bookkeeper or accounting software</option>
+                    <option>Spreadsheet/manual tracking</option>
+                    <option>Receipts only / informal</option>
+                    <option>Not currently tracked</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="cash_reserve">Cash Reserve</label>
+                  <select id="cash_reserve" required>
+                    <option value="">Select reserve position</option>
+                    <option>3+ months operating reserve</option>
+                    <option>1–2 months reserve</option>
+                    <option>Less than 30 days reserve</option>
+                    <option>No reserve</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="debt_pressure">Debt / Obligation Pressure</label>
+                  <select id="debt_pressure" required>
+                    <option value="">Select pressure level</option>
+                    <option>Low / controlled</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Unknown</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">Operational Readiness Probe</div>
+
+              <div class="intake-grid">
+                <div class="field">
+                  <label for="sops">SOP Coverage</label>
+                  <select id="sops" required>
+                    <option value="">Select coverage</option>
+                    <option>Documented and followed</option>
+                    <option>Partially documented</option>
+                    <option>Mostly in owner’s head</option>
+                    <option>No SOPs</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="owner_dependency">Owner Dependency</label>
+                  <select id="owner_dependency" required>
+                    <option value="">Select dependency</option>
+                    <option>Low — team/systems can operate</option>
+                    <option>Moderate — owner still central</option>
+                    <option>High — owner drives most execution</option>
+                    <option>Extreme — nothing moves without owner</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="team_capacity">Team / Support Capacity</label>
+                  <select id="team_capacity" required>
+                    <option value="">Select capacity</option>
+                    <option>Team in place</option>
+                    <option>Contractors / part-time help</option>
+                    <option>Solo operator</option>
+                    <option>Need immediate support</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="automation">Automation Usage</label>
+                  <select id="automation" required>
+                    <option value="">Select automation state</option>
+                    <option>Strong automation in place</option>
+                    <option>Some automation</option>
+                    <option>Mostly manual</option>
+                    <option>No automation</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">Revenue Stability + Risk Probe</div>
+
+              <div class="intake-grid">
+                <div class="field">
+                  <label for="revenue_model">Revenue Model</label>
+                  <select id="revenue_model" required>
+                    <option value="">Select model</option>
+                    <option>Recurring revenue</option>
+                    <option>Project-based</option>
+                    <option>Product sales</option>
+                    <option>Service-based</option>
+                    <option>Not active yet</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="client_concentration">Client Concentration</label>
+                  <select id="client_concentration" required>
+                    <option value="">Select concentration</option>
+                    <option>Diversified customer base</option>
+                    <option>One or two key clients dominate</option>
+                    <option>No customers yet</option>
+                    <option>Unknown</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="primary_constraint">Primary Constraint</label>
+                  <select id="primary_constraint" required>
+                    <option value="">Select constraint</option>
+                    <option>Capital</option>
+                    <option>Sales / lead generation</option>
+                    <option>Operations</option>
+                    <option>Team capacity</option>
+                    <option>Systems / automation</option>
+                    <option>Offer clarity</option>
+                    <option>Compliance / legal structure</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="execution_timeline">Execution Timeline</label>
+                  <select id="execution_timeline" required>
+                    <option value="">Select timeline</option>
+                    <option>Immediate — 0–30 days</option>
+                    <option>Near-term — 30–90 days</option>
+                    <option>Medium-term — 3–6 months</option>
+                    <option>Long-term — 6+ months</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="diagnostic_context">Diagnostic Context</label>
+                  <textarea id="diagnostic_context" placeholder="Briefly explain what is creating pressure, friction, or uncertainty in the business right now." required></textarea>
+                </div>
               </div>
             </div>
 
             <div class="actions">
-              <a class="cta" id="runDiagnosticBtn" href="https://buy.stripe.com/00w9AT3DW2Mc8YebMNfYY09">Run Diagnostic</a> 
+              <button class="cta" id="runDiagnosticBtn" type="submit">Run Diagnostic</button>
               <div class="micro-note">
-                By proceeding, you acknowledge that PBRS is an informational modeling tool and does not constitute legal, financial, or professional advice.
+                PBRS is an informational diagnostic layer. It does not constitute legal, financial, underwriting, tax, or professional advice.
               </div>
+            </div>
+
+            <div id="formError" class="error-box">
+              Required diagnostic fields are missing. Complete the intake before proceeding.
             </div>
           </form>
         </div>
@@ -612,25 +752,22 @@
           <div class="nace-label">NACE</div>
           <div class="nace-title">Institutional Interface</div>
 
-          <div class="nace-block">
-            <div class="nace-copy">
-              Welcome. This system will guide your evaluation.<br><br>
-              If you prefer, we may continue in your native language.<br><br>
-              We will begin with a brief intake.
-            </div>
+          <div class="nace-copy" id="naceCopy">
+            Welcome. PBRS continues from QuickScore and expands the analysis into financial control, operational readiness, revenue stability, risk exposure, and execution posture.
+          </div>
 
-            <div class="language-row">
-              <button class="lang-btn" type="button">English</button>
-              <button class="lang-btn" type="button">Español</button>
-              <button class="lang-btn" type="button">Français</button>
-              <button class="lang-btn" type="button">Deutsch</button>
-              <button class="lang-btn" type="button">العربية</button>
-              <button class="lang-btn" type="button">中文</button>
-            </div>
+          <div class="language-row">
+            <button class="lang-btn" type="button">English</button>
+            <button class="lang-btn" type="button">Español</button>
+            <button class="lang-btn" type="button">Français</button>
+            <button class="lang-btn" type="button">Deutsch</button>
+            <button class="lang-btn" type="button">العربية</button>
+            <button class="lang-btn" type="button">中文</button>
           </div>
 
           <div class="state-line">
-            Your entry is being processed within structured institutional rails. Continue when ready.
+            <strong>Diagnostic logic:</strong><br>
+            QuickScore gives the signal. PBRS probes the structure behind the signal.
           </div>
         </aside>
       </section>
@@ -638,96 +775,144 @@
       <div class="stack-bar">
         <div class="stack-label">System Flow</div>
         <div class="stack-flow">
+          <span>PQS</span>
+          <span class="arrow">→</span>
           <span class="active">PBRS</span>
           <span class="arrow">→</span>
           <span>PBB</span>
           <span class="arrow">→</span>
-          <span>PBS</span>
-          <span class="arrow">→</span>
-          <span>PNC</span>
+          <span>PSEQ</span>
         </div>
       </div>
 
       <footer class="footer">
-        © Rising Phoenix Enterprises &nbsp; | &nbsp;
-        <a href="/policies/terms.html" target="_blank" rel="noopener">Terms</a>
-&nbsp; | &nbsp;
-<a href="/policies/privacy.html" target="_blank" rel="noopener">Privacy</a> 
+        <div class="footer-inner">
+          <span>© Rising Phoenix Enterprises</span>
+          <span>|</span>
+          <a href="/policies/terms.html" target="_blank" rel="noopener">Terms</a>
+          <span>|</span>
+          <a href="/policies/privacy.html" target="_blank" rel="noopener">Privacy</a>
+        </div>
       </footer>
-     <script>
-const naceCopy = document.querySelector(".nace-copy");
+    </div>
+  </main>
 
-/* WELCOME MESSAGE (FORCED ON LOAD) */
-window.addEventListener("load", () => {
-  naceCopy.innerHTML = `
-  Welcome. This system will guide your evaluation.<br><br>
-  If you prefer, we may continue in your native language.<br><br>
-  We will begin with a brief intake.
-  `;
-});
+  <script>
+    const STRIPE_URL = "https://buy.stripe.com/00w9AT3DW2Mc8YebMNfYY09";
 
-/* INTAKE RESPONSE LOGIC */
-const inputs = document.querySelectorAll("input, select, textarea");
-let completed = 0;
+    const pqsData = JSON.parse(localStorage.getItem("pqs_intake") || "{}");
+    const importBanner = document.getElementById("importBanner");
+    const naceCopy = document.getElementById("naceCopy");
+    const form = document.getElementById("pbrsForm");
+    const formError = document.getElementById("formError");
 
-inputs.forEach((el,index)=>{
+    const map = {
+      legal_name: ["legal_name", "business_name"],
+      entity_type: ["entity_type"],
+      state_country: ["state_country", "state"],
+      revenue_band: ["revenue_band"],
+      reporting_cadence: ["reporting_cadence"],
+      ops_structure_flag: ["ops_structure_flag", "team_structure"],
+      primary_goal: ["primary_goal", "objective"]
+    };
 
-  el.addEventListener("focus",()=>{
-    if(index===0){
+    function valueFromPQS(keys){
+      for(const key of keys){
+        if(pqsData[key] && String(pqsData[key]).trim()){
+          return String(pqsData[key]).trim();
+        }
+      }
+      return "";
+    }
+
+    function setField(id, value){
+      const el = document.getElementById(id);
+      if(!el || !value) return;
+      el.value = value;
+    }
+
+    let imported = false;
+
+    Object.keys(map).forEach(id => {
+      const value = valueFromPQS(map[id]);
+      if(value){
+        setField(id, value);
+        imported = true;
+      }
+    });
+
+    if(imported){
+      importBanner.classList.add("show");
       naceCopy.innerHTML = `
-      We will begin with core business structure inputs.<br><br>
-      Enter information exactly as registered.
+        Imported QuickScore profile detected.<br><br>
+        We will not repeat the same diagnostic layer. Continue with deeper PBRS probes.
       `;
     }
-  });
 
-  el.addEventListener("change",()=>{
-    completed++;
-    if(completed===3){
+    const inputs = document.querySelectorAll("input, select, textarea");
+
+    inputs.forEach((el) => {
+      el.addEventListener("focus", () => {
+        const section = el.closest(".form-section");
+        const title = section ? section.querySelector(".section-kicker").textContent : "PBRS Diagnostic";
+        naceCopy.innerHTML = `
+          ${title}<br><br>
+          Complete this field with the most accurate current-state answer.
+        `;
+      });
+    });
+
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+
+      if(!form.checkValidity()){
+        formError.classList.add("show");
+        form.reportValidity();
+        naceCopy.innerHTML = `
+          Required diagnostic fields are missing.<br><br>
+          Complete the intake before proceeding to PBRS payment.
+        `;
+        return;
+      }
+
+      formError.classList.remove("show");
+
+      const pbrsData = {
+        source: imported ? "pqs_import_plus_pbrs_expansion" : "direct_pbrs_intake",
+        legal_name: document.getElementById("legal_name").value.trim(),
+        entity_type: document.getElementById("entity_type").value.trim(),
+        state_country: document.getElementById("state_country").value.trim(),
+        revenue_band: document.getElementById("revenue_band").value.trim(),
+        reporting_cadence: document.getElementById("reporting_cadence").value.trim(),
+        ops_structure_flag: document.getElementById("ops_structure_flag").value.trim(),
+        primary_goal: document.getElementById("primary_goal").value.trim(),
+        business_bank: document.getElementById("business_bank").value.trim(),
+        bookkeeping: document.getElementById("bookkeeping").value.trim(),
+        cash_reserve: document.getElementById("cash_reserve").value.trim(),
+        debt_pressure: document.getElementById("debt_pressure").value.trim(),
+        sops: document.getElementById("sops").value.trim(),
+        owner_dependency: document.getElementById("owner_dependency").value.trim(),
+        team_capacity: document.getElementById("team_capacity").value.trim(),
+        automation: document.getElementById("automation").value.trim(),
+        revenue_model: document.getElementById("revenue_model").value.trim(),
+        client_concentration: document.getElementById("client_concentration").value.trim(),
+        primary_constraint: document.getElementById("primary_constraint").value.trim(),
+        execution_timeline: document.getElementById("execution_timeline").value.trim(),
+        diagnostic_context: document.getElementById("diagnostic_context").value.trim(),
+        submitted_at: new Date().toISOString()
+      };
+
+      localStorage.setItem("pbrs_intake", JSON.stringify(pbrsData));
+
       naceCopy.innerHTML = `
-      Good. Continue the intake sequence.<br><br>
-      The system is evaluating your operational baseline.
+        Diagnostic intake accepted.<br><br>
+        Redirecting to secure PBRS checkout.
       `;
-    }
-  });
 
-});
-
-/* OBJECTIVE FIELD */
-const textarea = document.querySelector("textarea");
-
-textarea.addEventListener("focus",()=>{
-  naceCopy.innerHTML = `
-  Be direct. State only the primary objective.<br><br>
-  The system will structure evaluation accordingly.
-  `;
-});
-
-/* CTA CONTROL */
-const cta = document.getElementById("runDiagnosticBtn");
-
-/* Hover Behavior */
-cta.addEventListener("mouseenter",()=>{
-  naceCopy.innerHTML = `
-  Your inputs are ready for processing.<br><br>
-  Continue when ready.
-  `;
-});
-
-/* CLICK BEHAVIOR (FINAL) */
-cta.addEventListener("click", function(e){
-
-  e.preventDefault(); // stop instant redirect
-
-  naceCopy.innerHTML = `
-  Processing intake.<br><br>
-  Maintain session.
-  `;
-
-  setTimeout(() => {
-    window.location.href = this.href;
-  }, 750);
-
-});
-</script> 
- 
+      setTimeout(() => {
+        window.location.href = STRIPE_URL;
+      }, 750);
+    });
+  </script>
+</body>
+</html> 
