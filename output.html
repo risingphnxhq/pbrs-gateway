@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -354,5 +354,376 @@
     "Corrective implementation is expected to improve execution consistency, operational clarity, revenue predictability, and long-term scalability readiness over the next 30–60 days.";
 })();
 </script>
+
+  <!-- ========================================= -->
+<!-- PBRS INTELLIGENCE ENGINE — CORE LOGIC V1 -->
+<!-- ========================================= -->
+
+<script>
+
+const PBRS_INTELLIGENCE_ENGINE = {
+
+  /* ===================================================== */
+  /* READINESS CLASSIFICATIONS */
+  /* ===================================================== */
+
+  readinessTiers: [
+    {
+      min: 90,
+      label: "INSTITUTIONAL READINESS",
+      meaning: "Operational systems demonstrate strong structural maturity, execution continuity, and scalable infrastructure alignment."
+    },
+    {
+      min: 75,
+      label: "STRUCTURED READINESS",
+      meaning: "Business operations demonstrate stable structural readiness with moderate scalability capability."
+    },
+    {
+      min: 60,
+      label: "OPERATIONALLY CONDITIONAL",
+      meaning: "Core operations are functional, but execution inconsistency and structural gaps are limiting stable progression."
+    },
+    {
+      min: 40,
+      label: "STRUCTURALLY CONSTRAINED",
+      meaning: "Operational limitations are significantly restricting execution continuity and scalable business stability."
+    },
+    {
+      min: 0,
+      label: "CRITICAL INSTABILITY",
+      meaning: "Core structural instability is creating elevated operational and revenue risk."
+    }
+  ],
+
+  /* ===================================================== */
+  /* OPERATIONAL ARCHETYPES */
+  /* ===================================================== */
+
+  archetypes: {
+
+    reactive_founder: {
+      label: "Reactive Founder Operator",
+      executiveSummary:
+        "Execution dependency is concentrated around founder oversight rather than stabilized operational systems. Current business continuity remains vulnerable to workflow inconsistency, operational overload, and reactive execution behavior."
+    },
+
+    growth_without_structure: {
+      label: "Growth Without Structure",
+      executiveSummary:
+        "Growth acceleration is beginning to outpace operational structure, increasing execution friction, scaling instability, and organizational strain across core business functions."
+    },
+
+    constrained_operator: {
+      label: "Structurally Constrained Operator",
+      executiveSummary:
+        "Core operational constraints are currently limiting execution continuity, revenue predictability, and scalable progression capacity across the organization."
+    },
+
+    stable_bottlenecked: {
+      label: "Stable But Bottlenecked",
+      executiveSummary:
+        "Operational maturity is present, but scaling velocity is being restricted by workflow bottlenecks, sequencing inefficiency, and limited operational optimization."
+    },
+
+    institutionalizing: {
+      label: "Institutionalizing Operator",
+      executiveSummary:
+        "The organization is transitioning from functional operational stability toward institutional-grade execution alignment and scalable operational maturity."
+    }
+
+  },
+
+  /* ===================================================== */
+  /* RISK SIGNAL GENERATION */
+  /* ===================================================== */
+
+  generateRiskSignals(data) {
+
+    return {
+
+      revenueFragility:
+        data.revenueConsistency <= 2 ? "HIGH" :
+        data.revenueConsistency <= 3 ? "MODERATE" :
+        "LOW",
+
+      founderDependency:
+        data.ownerDependency >= 4 ? "CRITICAL" :
+        data.ownerDependency >= 3 ? "HIGH" :
+        "MODERATE",
+
+      workflowVolatility:
+        data.sopCoverage <= 2 ? "HIGH" :
+        data.sopCoverage <= 3 ? "MODERATE" :
+        "LOW",
+
+      scaleResistance:
+        data.automationUsage <= 2 ? "HIGH" :
+        data.automationUsage <= 3 ? "MODERATE" :
+        "LOW",
+
+      visibilityGaps:
+        data.reportingSystems <= 2 ? "HIGH" :
+        data.reportingSystems <= 3 ? "MODERATE" :
+        "LOW",
+
+      executionDrift:
+        data.executionConsistency <= 2 ? "HIGH" :
+        data.executionConsistency <= 3 ? "MODERATE" :
+        "LOW"
+
+    };
+
+  },
+
+  /* ===================================================== */
+  /* ARCHETYPE DETECTION */
+  /* ===================================================== */
+
+  detectArchetype(data) {
+
+    if (
+      data.ownerDependency >= 4 &&
+      data.sopCoverage <= 2 &&
+      data.automationUsage <= 2
+    ) {
+      return "reactive_founder";
+    }
+
+    if (
+      data.revenueGrowth >= 4 &&
+      data.executionConsistency <= 2
+    ) {
+      return "growth_without_structure";
+    }
+
+    if (
+      data.executionConsistency <= 2 &&
+      data.revenueConsistency <= 2
+    ) {
+      return "constrained_operator";
+    }
+
+    if (
+      data.executionConsistency >= 3 &&
+      data.workflowEfficiency <= 3
+    ) {
+      return "stable_bottlenecked";
+    }
+
+    return "institutionalizing";
+
+  },
+
+  /* ===================================================== */
+  /* READINESS TIER DETECTION */
+  /* ===================================================== */
+
+  getReadinessTier(score) {
+
+    return this.readinessTiers.find(
+      tier => score >= tier.min
+    );
+
+  },
+
+  /* ===================================================== */
+  /* PRIMARY CONSTRAINT */
+  /* ===================================================== */
+
+  generatePrimaryConstraint(data) {
+
+    if (data.ownerDependency >= 4) {
+      return "Operational dependency remains heavily concentrated around founder execution and manual coordination, limiting scalability and execution continuity.";
+    }
+
+    if (data.sopCoverage <= 2) {
+      return "Process standardization remains underdeveloped, creating operational inconsistency and unstable workflow continuity.";
+    }
+
+    if (data.revenueConsistency <= 2) {
+      return "Revenue predictability remains structurally unstable due to inconsistent conversion flow and limited monetization continuity.";
+    }
+
+    if (data.executionConsistency <= 2) {
+      return "Execution inconsistency is reducing operational reliability and limiting scalable organizational performance.";
+    }
+
+    return "Operational sequencing and structural alignment require optimization before stable scaling can occur.";
+
+  },
+
+  /* ===================================================== */
+  /* ROOT CAUSE */
+  /* ===================================================== */
+
+  generateRootCause(data) {
+
+    if (
+      data.ownerDependency >= 4 &&
+      data.sopCoverage <= 2
+    ) {
+      return "Core operational systems currently rely more heavily on reactive founder execution than predefined operational infrastructure, resulting in continuity instability and workflow inconsistency.";
+    }
+
+    if (
+      data.executionConsistency <= 2 &&
+      data.reportingSystems <= 2
+    ) {
+      return "Limited operational visibility and inconsistent execution enforcement are reducing organizational coordination and measurable performance continuity.";
+    }
+
+    return "Current operational structure has not yet matured into a fully stabilized execution environment capable of supporting scalable institutional consistency.";
+
+  },
+
+  /* ===================================================== */
+  /* REVENUE IMPACT */
+  /* ===================================================== */
+
+  generateRevenueImpact(data) {
+
+    if (data.revenueConsistency <= 2) {
+      return "Revenue instability is reducing financial predictability and limiting the organization's ability to scale without increasing operational pressure.";
+    }
+
+    if (data.clientConcentration >= 4) {
+      return "Revenue concentration risk is creating financial exposure by limiting income diversification and increasing dependency vulnerability.";
+    }
+
+    return "Operational inefficiency is reducing monetization consistency and slowing scalable revenue progression.";
+
+  },
+
+  /* ===================================================== */
+  /* OPERATIONAL IMPACT */
+  /* ===================================================== */
+
+  generateOperationalImpact(data) {
+
+    if (data.sopCoverage <= 2) {
+      return "Workflow continuity remains vulnerable to execution inconsistency due to limited standardization and weak procedural enforcement.";
+    }
+
+    if (data.executionConsistency <= 2) {
+      return "Execution instability is increasing operational friction, reducing efficiency, and weakening scalable coordination.";
+    }
+
+    return "Operational inefficiency is limiting execution velocity and reducing long-term scalability readiness.";
+
+  },
+
+  /* ===================================================== */
+  /* RISK OUTLOOK */
+  /* ===================================================== */
+
+  generateRiskOutlook(data) {
+
+    if (
+      data.executionConsistency <= 2 &&
+      data.ownerDependency >= 4
+    ) {
+      return "If unresolved, current operational conditions may result in execution fatigue, scaling resistance, workflow instability, and increased continuity risk.";
+    }
+
+    if (data.revenueConsistency <= 2) {
+      return "Revenue instability may increase operational pressure and reduce long-term organizational resilience if corrective systems are not implemented.";
+    }
+
+    return "Current structural limitations may reduce scalability efficiency and create increasing operational drag as growth pressure increases.";
+
+  },
+
+  /* ===================================================== */
+  /* IMMEDIATE ACTION PLAN */
+  /* ===================================================== */
+
+  generateActionPlan(data) {
+
+    const actions = [];
+
+    if (data.ownerDependency >= 4) {
+      actions.push(
+        "Reduce dependency on founder-centered operational execution"
+      );
+    }
+
+    if (data.sopCoverage <= 2) {
+      actions.push(
+        "Implement standardized operational procedures and workflow controls"
+      );
+    }
+
+    if (data.reportingSystems <= 2) {
+      actions.push(
+        "Install measurable operational reporting and execution visibility systems"
+      );
+    }
+
+    if (data.revenueConsistency <= 2) {
+      actions.push(
+        "Stabilize monetization systems and improve conversion continuity"
+      );
+    }
+
+    if (data.executionConsistency <= 2) {
+      actions.push(
+        "Improve execution sequencing and operational enforcement structure"
+      );
+    }
+
+    return actions;
+
+  },
+
+  /* ===================================================== */
+  /* BUILD PATH RECOMMENDATION */
+  /* ===================================================== */
+
+  recommendBuildPath(data) {
+
+    if (
+      data.executionConsistency <= 2 &&
+      data.sopCoverage <= 2
+    ) {
+      return {
+        path: "FOUNDATION BUILD",
+        description:
+          "Recommended for organizations requiring stabilization, workflow grounding, and structural correction."
+      };
+    }
+
+    if (
+      data.revenueConsistency <= 2
+    ) {
+      return {
+        path: "REVENUE STABILIZATION BUILD",
+        description:
+          "Recommended for businesses experiencing monetization inconsistency and unstable revenue continuity."
+      };
+    }
+
+    if (
+      data.revenueGrowth >= 4 &&
+      data.workflowEfficiency <= 3
+    ) {
+      return {
+        path: "SCALE ALIGNMENT BUILD",
+        description:
+          "Recommended for organizations preparing for controlled scale and operational expansion."
+      };
+    }
+
+    return {
+      path: "OPERATIONAL BUILD",
+      description:
+        "Recommended for organizations requiring execution discipline, sequencing clarity, and workflow optimization."
+    };
+
+  }
+
+};
+
+</script> 
+
 </body>
 </html> 
