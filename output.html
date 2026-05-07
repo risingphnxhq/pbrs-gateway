@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+ 
   <style>
     :root{
       --bg:#050505; --panel:#0d0f13; --panel2:#11141a; --text:#f3f4f6;
@@ -272,19 +272,19 @@
     context: get(["diagnostic_context","primary_goal","primaryObjective"], "")
   };
 
-  let score = 75;
+  let score = 68;
 
   const penalties = [
     /pre-revenue/i.test(profile.revenue) ? 8 : 0,
     /not|informal|partial/i.test(profile.reporting) ? 7 : 0,
     /informal|partial/i.test(profile.ops) ? 8 : 0,
     /not currently|no/i.test(profile.bookkeeping) ? 8 : 0,
-    /no reserve/i.test(profile.reserve) ? 7 : 0,
+    /no reserve/i.test(profile.reserve) ? 12 : 0,
     /extreme|owner/i.test(profile.owner) ? 8 : 0,
     /solo/i.test(profile.team) ? 5 : 0,
     /no customers/i.test(profile.concentration) ? 6 : 0,
     /immediate|0–30|0-30/i.test(profile.timeline) ? 4 : 0,
-    /manual|no flow|inconsistent|undefined/i.test(profile.context) ? 6 : 0
+    /manual|no flow|inconsistent|undefined/i.test(profile.context) ? 12 : 0
   ].reduce((a,b)=>a+b,0);
 
   score = Math.max(35, Math.min(96, score - penalties + (/formalized/i.test(profile.ops) ? 8 : 0)));
