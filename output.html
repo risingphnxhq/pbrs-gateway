@@ -1,224 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Phoenix Business Readiness Snapshot — Output</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PBRS Diagnostic Output</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
---bg:#050505;
---panel:#0d0f13;
---text:#f3f4f6;
---muted:#a8afb8;
---gold:#c9a227;
---line:#232831;
---green:#2ecc71;
---amber:#f1c40f;
---red:#e74c3c;
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-font-family:"Inter", sans-serif;
-margin:0;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
-
-.section{
-border:1px solid var(--line);
-padding:24px;
-margin-bottom:18px;
-background:rgba(255,255,255,0.02);
-}
-
-h1,h2{
-font-family:"Cinzel", serif;
-letter-spacing:0.05em;
-text-transform:uppercase;
-}
-
-h1{font-size:28px;}
-h2{font-size:18px;color:var(--gold);}
-
-p{color:var(--muted);line-height:1.7;}
-
-.score{
-font-size:60px;
-font-family:"Cinzel", serif;
-}
-
-.badge{
-padding:6px 12px;
-border-radius:999px;
-font-size:12px;
-display:inline-block;
-margin-top:10px;
-}
-
-.green{background:rgba(46,204,113,0.2);}
-.amber{background:rgba(241,196,15,0.2);}
-.red{background:rgba(231,76,60,0.2);}
-
-ul{padding-left:18px;}
-
-.button{
-display:inline-block;
-padding:14px 28px;
-border:1px solid var(--gold);
-text-decoration:none;
-color:var(--text);
-text-transform:uppercase;
-margin-top:20px;
-}
-</style>
+  <style>
+    :root{
+      --bg:#050505; --panel:#0d0f13; --panel2:#11141a; --text:#f3f4f6;
+      --muted:#a8afb8; --muted2:#7f8791; --gold:#c9a227;
+      --line:#232831; --cyan:#6fd8ff; --green:#34d399; --yellow:#facc15; --red:#fb7185;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+    body{
+      background:
+        radial-gradient(circle at 50% 18%, rgba(201,162,39,.08), transparent 44%),
+        radial-gradient(circle at 50% 58%, rgba(49,95,188,.16), transparent 58%),
+        linear-gradient(180deg,#090909,#050505);
+    }
+    .page{
+      min-height:100vh;
+      background:
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(180deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:120px 120px;
+      overflow:hidden;
+      position:relative;
+    }
+    .seal{position:absolute;top:30px;left:36px;width:112px;z-index:3}
+    .system-label{text-align:center;padding-top:42px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:#cfd4da}
+    .shell{width:min(1380px,94vw);margin:0 auto;padding:70px 0 38px}
+    .hero{text-align:center;margin-bottom:32px}
+    h1{
+      font-family:Cinzel,serif;font-size:clamp(30px,3vw,48px);letter-spacing:.05em;text-transform:uppercase;
+      background:linear-gradient(180deg,#fff,#d5dbe2,#f7f9fb,#bbc3cc);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      text-shadow:0 10px 24px rgba(0,0,0,.55);
+      margin-bottom:14px;
+    }
+    .subline{font-size:17px;color:#9fdfff;line-height:1.5}
+    .price{font-family:Cinzel,serif;color:var(--gold);font-size:23px;letter-spacing:.12em;margin-top:18px;text-transform:uppercase}
+    .workspace{display:grid;grid-template-columns:1fr 320px;gap:28px}
+    .panel,.rail,.card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.026),rgba(255,255,255,.012));
+      backdrop-filter:blur(4px);
+    }
+    .panel{padding:30px}
+    .rail{padding:24px 20px;min-height:520px;background:#0b0b0c}
+    .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6fd8ff;margin-bottom:10px;font-weight:700}
+    h2,h3{
+      font-family:Cinzel,serif;text-transform:uppercase;letter-spacing:.06em;
+      color:#fff;margin-bottom:16px;
+    }
+    h2{font-size:30px}
+    h3{font-size:21px;color:var(--gold)}
+    p{color:#bfeeff;line-height:1.65;font-size:16px}
+    .summary{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+    .score-grid{display:grid;grid-template-columns:260px 1fr;gap:24px;margin-bottom:26px}
+    .score-box{border:1px solid var(--line);padding:26px;background:rgba(0,0,0,.14)}
+    .score-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9edcff;margin-bottom:12px}
+    .score{font-family:Cinzel,serif;font-size:72px;line-height:1;color:#fff}
+    .badge{display:inline-block;margin-top:16px;padding:8px 14px;border:1px solid var(--yellow);color:var(--yellow);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.12em}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+    .metric{border:1px solid var(--line);padding:14px;background:rgba(255,255,255,.015)}
+    .metric span{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);margin-bottom:7px}
+    .metric strong{color:#fff;font-size:14px}
+    .meaning li,.issues li,.actions li{margin:10px 0;color:#d8f6ff;line-height:1.5}
+    .meaning{list-style:none}
+    .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px}
+    .green{background:var(--green)} .yellow{background:var(--yellow)} .red{background:var(--red)}
+    .card{padding:24px;margin:18px 0}
+    .card h3{font-size:22px}
+    .bridge{border-color:rgba(201,162,39,.45);box-shadow:0 0 28px rgba(201,162,39,.05)}
+    .cta{
+      display:inline-flex;margin-top:22px;padding:17px 30px;border:1px solid var(--gold);
+      color:#fff;text-decoration:none;font-family:Cinzel,serif;text-transform:uppercase;
+      letter-spacing:.1em;font-weight:700;
+    }
+    .cta:hover{background:var(--gold);color:#111}
+    .profile{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .profile div{border-bottom:1px solid var(--line);padding:9px 0;color:#d8f6ff}
+    .profile span{display:block;color:var(--muted2);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .stack-bar{display:flex;justify-content:center;gap:14px;border:1px solid var(--line);padding:15px;margin:28px auto 0;width:min(900px,94%)}
+    .stack-bar span{font-family:Cinzel,serif;letter-spacing:.09em;color:#8d949d}
+    .stack-bar .active{color:var(--gold)}
+    footer{text-align:center;color:#7b828c;font-size:12px;padding:22px 0}
+    footer a{color:#9ba3ad;text-decoration:none;margin:0 8px}
+    @media(max-width:1050px){.workspace,.score-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.rail{order:-1}}
+    @media(max-width:700px){.seal{width:82px;left:18px}.shell{padding-top:50px}.panel{padding:20px}.metric-grid,.profile{grid-template-columns:1fr}}
+  </style>
 </head>
 
 <body>
-<div class="container">
+<main class="page">
+  <img src="phoenix-os-logo.png" class="seal" alt="Phoenix OS Seal">
 
-<!-- 1 EXEC SUMMARY -->
-<div class="section">
-<h1>Executive Summary</h1>
-<p id="exec-summary"></p>
-</div>
+  <div class="system-label">Phoenix Business System</div>
 
-<!-- 2 SCORE -->
-<div class="section">
-<h2>Operational Readiness Score</h2>
-<div class="score" id="score">--</div>
-<div id="score-badge" class="badge"></div>
+  <div class="shell">
+    <section class="hero">
+      <h1>Phoenix Business Readiness Snapshot</h1>
+      <p class="subline">Private-access diagnostic output for structure, stability, risk exposure, and execution readiness.</p>
+      <div class="price">PBRS · Diagnostic Result</div>
+    </section>
 
-<p id="score-desc"></p>
+    <section class="workspace">
+      <section class="panel">
 
-<hr/>
+        <div class="summary">
+          <div class="kicker">Executive Summary</div>
+          <h2>Operational Readiness Review</h2>
+          <p id="executiveSummary"></p>
+        </div>
 
-<p><strong>Score Meaning:</strong></p>
+        <div class="score-grid">
+          <div class="score-box">
+            <div class="score-label">Operational Readiness Score</div>
+            <div class="score" id="score">65</div>
+            <div class="badge" id="classification">Operationally Conditional</div>
+          </div>
 
-<p>🟢 Structured (75–100) — Business is stable and scalable</p>
-<p>🟡 Conditional (50–74) — Gaps are limiting consistency</p>
-<p>🔴 Constrained (0–49) — Structure is preventing growth</p>
-</div>
+          <div class="score-box">
+            <h3>Score Meaning</h3>
+            <p id="benchmark"></p>
 
-<!-- 3 PRIMARY CONSTRAINT -->
-<div class="section">
-<h2>Primary Constraint</h2>
-<p id="constraint"></p>
-</div>
+            <ul class="meaning">
+              <li><span class="dot green"></span><strong>Structured (75–100)</strong> — Business is stable and scalable.</li>
+              <li><span class="dot yellow"></span><strong>Conditional (50–74)</strong> — Gaps are limiting consistency.</li>
+              <li><span class="dot red"></span><strong>Constrained (0–49)</strong> — Structure is preventing growth.</li>
+            </ul>
 
-<!-- 4 ROOT CAUSE -->
-<div class="section">
-<h2>Root Cause</h2>
-<p id="root-cause"></p>
-</div>
+            <div class="metric-grid">
+              <div class="metric"><span>Risk Exposure</span><strong id="riskMetric">Moderate</strong></div>
+              <div class="metric"><span>Execution Stability</span><strong id="stabilityMetric">Fragile</strong></div>
+              <div class="metric"><span>Revenue Consistency</span><strong id="revenueMetric">Developing</strong></div>
+              <div class="metric"><span>Scale Readiness</span><strong id="scaleMetric">Limited</strong></div>
+            </div>
+          </div>
+        </div>
 
-<!-- 5 REVENUE IMPACT -->
-<div class="section">
-<h2>Revenue Impact</h2>
-<p id="impact"></p>
-</div>
+        <div class="card">
+          <h3>Primary Constraint</h3>
+          <p id="primaryConstraint"></p>
+        </div>
 
-<!-- 6 OPERATIONAL IMPACT -->
-<div class="section">
-<h2>Operational Impact</h2>
-<p id="ops-impact"></p>
-</div>
+        <div class="card">
+          <h3>Root Cause</h3>
+          <p id="rootCause"></p>
+        </div>
 
-<!-- 7 RISK -->
-<div class="section">
-<h2>Risk Outlook</h2>
-<p id="risk"></p>
-</div>
+        <div class="card">
+          <h3>Revenue Impact</h3>
+          <p id="revenueImpact"></p>
+        </div>
 
-<!-- 8 SUPPORT -->
-<div class="section">
-<h2>Supporting Issues</h2>
-<ul id="support"></ul>
-</div>
+        <div class="card">
+          <h3>Operational Impact</h3>
+          <p id="operationalImpact"></p>
+        </div>
 
-<!-- 9 ACTION PLAN -->
-<div class="section">
-<h2>Immediate Action Plan</h2>
-<ol id="actions"></ol>
-</div>
+        <div class="card">
+          <h3>Risk Outlook</h3>
+          <p id="riskOutlook"></p>
+        </div>
 
-<!-- 10 OUTCOME -->
-<div class="section">
-<h2>Expected Outcome</h2>
-<p id="outcome"></p>
-<p><strong>Timeline:</strong> 30–60 Days</p>
-</div>
+        <div class="card">
+          <h3>Supporting Issues</h3>
+          <ul class="issues" id="supportingIssues"></ul>
+        </div>
 
-<!-- CTA -->
-<div class="section">
-<h2>Next Step</h2>
-<p>
-We have identified what is limiting your business performance.
-The next step is to correct it through structured execution.
-</p>
+        <div class="card">
+          <h3>Immediate Action Plan</h3>
+          <ol class="actions" id="actionPlan"></ol>
+        </div>
 
-<a href="https://pbb.risingphoenixhq.com/index.html" class="button">
-Proceed to Structure Build →
-</a>
-</div>
+        <div class="card">
+          <h3>Expected Outcome</h3>
+          <p id="expectedOutcome"></p>
+        </div>
 
-</div>
+        <div class="card bridge">
+          <h3>Progression Path</h3>
+          <p>
+            PBRS has identified the operational and structural limitations currently restricting stable business growth.
+            <br><br>
+            PBB is the controlled execution layer used to correct these limitations through guided implementation,
+            operational sequencing, and structural alignment.
+            <br><br>
+            Progression into PBB transitions your organization from diagnostic awareness into controlled corrective execution.
+          </p>
+          <a class="cta" href="https://pbb.risingphoenixhq.com/index.html">Proceed to Controlled Build Path →</a>
+        </div>
+
+      </section>
+
+      <aside class="rail">
+        <div class="kicker">NACE</div>
+        <h3>Result Guidance</h3>
+        <p>
+          PBRS has completed diagnostic interpretation.
+          <br><br>
+          This output converts intake signals into operational meaning, business consequence, and corrective direction.
+          <br><br>
+          The next movement is not random. It is governed by structural need and execution readiness.
+        </p>
+
+        <div class="card">
+          <h3>Submitted Profile</h3>
+          <div class="profile">
+            <div><span>Business</span><strong id="pBusiness">—</strong></div>
+            <div><span>Entity</span><strong id="pEntity">—</strong></div>
+            <div><span>Jurisdiction</span><strong id="pState">—</strong></div>
+            <div><span>Revenue</span><strong id="pRevenue">—</strong></div>
+            <div><span>Reporting</span><strong id="pReporting">—</strong></div>
+            <div><span>Operations</span><strong id="pOps">—</strong></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="stack-bar">
+      <span>PQS</span><span>→</span><span class="active">PBRS</span><span>→</span><span>PBB</span><span>→</span><span>PBSEQ</span><span>→</span><span>PNC</span>
+    </div>
+
+    <footer>
+      © Rising Phoenix Enterprises |
+      <a href="/terms.html">Terms</a> |
+      <a href="/privacy.html">Privacy</a>
+    </footer>
+  </div>
+</main>
 
 <script>
+(function(){
+  const data = JSON.parse(localStorage.getItem("pbrsIntake") || "{}");
 
-const data = JSON.parse(localStorage.getItem("pbrs_intake")||"{}");
+  const get = (keys, fallback="—") => {
+    for (const key of keys) {
+      const value = data[key] || localStorage.getItem(key);
+      if (value && String(value).trim()) return String(value).trim();
+    }
+    const el = document.querySelector(keys.map(k => "#" + k).join(","));
+    return el && el.value ? el.value : fallback;
+  };
 
-/* SCORE SIMULATION */
-let score = Math.floor(Math.random()*40)+50;
+  const profile = {
+    business: get(["legal_name","legalName","business_name"], "Rising Phoenix Enterprises"),
+    entity: get(["entity_type","entityType"], "LLC"),
+    state: get(["state_country","stateCountry","jurisdiction"], "Florida"),
+    revenue: get(["revenue_band","revenueBand"], "Pre-Revenue"),
+    reporting: get(["reporting_cadence","reportingCadence"], "Annually"),
+    ops: get(["ops_structure_flag","operations_structure","opsStructure"], "Formalized"),
+    banking: get(["business_banking"], ""),
+    bookkeeping: get(["bookkeeping_method"], ""),
+    reserve: get(["cash_reserve"], ""),
+    debt: get(["debt_pressure"], ""),
+    sop: get(["sop_coverage"], ""),
+    owner: get(["owner_dependency"], ""),
+    team: get(["team_capacity"], ""),
+    automation: get(["automation_usage"], ""),
+    revenueModel: get(["revenue_model"], ""),
+    concentration: get(["client_concentration"], ""),
+    constraint: get(["primary_constraint"], ""),
+    timeline: get(["execution_timeline"], ""),
+    context: get(["diagnostic_context","primary_goal","primaryObjective"], "")
+  };
 
-let state="Conditional";
-let badgeClass="amber";
+  let score = 75;
 
-if(score>=75){state="Structured";badgeClass="green";}
-if(score<50){state="Constrained";badgeClass="red";}
+  const penalties = [
+    /pre-revenue/i.test(profile.revenue) ? 8 : 0,
+    /not|informal|partial/i.test(profile.reporting) ? 7 : 0,
+    /informal|partial/i.test(profile.ops) ? 8 : 0,
+    /not currently|no/i.test(profile.bookkeeping) ? 8 : 0,
+    /no reserve/i.test(profile.reserve) ? 7 : 0,
+    /extreme|owner/i.test(profile.owner) ? 8 : 0,
+    /solo/i.test(profile.team) ? 5 : 0,
+    /no customers/i.test(profile.concentration) ? 6 : 0,
+    /immediate|0–30|0-30/i.test(profile.timeline) ? 4 : 0,
+    /manual|no flow|inconsistent|undefined/i.test(profile.context) ? 6 : 0
+  ].reduce((a,b)=>a+b,0);
 
-document.getElementById("score").innerText=score;
-document.getElementById("score-badge").innerText=state;
-document.getElementById("score-badge").classList.add(badgeClass);
+  score = Math.max(35, Math.min(96, score - penalties + (/formalized/i.test(profile.ops) ? 8 : 0)));
 
-/* 10:5 CONTENT */
+  let classification = "OPERATIONALLY CONDITIONAL";
+  let badgeColor = "var(--yellow)";
+  if(score >= 75){ classification = "STRUCTURED READINESS"; badgeColor = "var(--green)"; }
+  if(score < 50){ classification = "OPERATIONALLY CONSTRAINED"; badgeColor = "var(--red)"; }
 
-document.getElementById("exec-summary").innerText =
-"Your business is currently limited by structural gaps that are reducing consistency, weakening execution, and preventing reliable growth.";
+  document.getElementById("score").textContent = score;
+  document.getElementById("classification").textContent = classification;
+  document.getElementById("classification").style.borderColor = badgeColor;
+  document.getElementById("classification").style.color = badgeColor;
 
-document.getElementById("constraint").innerText =
-"Your primary constraint is lack of structured conversion and operational alignment.";
+  document.getElementById("pBusiness").textContent = profile.business;
+  document.getElementById("pEntity").textContent = profile.entity;
+  document.getElementById("pState").textContent = profile.state;
+  document.getElementById("pRevenue").textContent = profile.revenue;
+  document.getElementById("pReporting").textContent = profile.reporting;
+  document.getElementById("pOps").textContent = profile.ops;
 
-document.getElementById("root-cause").innerText =
-"This is caused by undefined processes, inconsistent decision flow, and lack of a repeatable system.";
+  document.getElementById("executiveSummary").textContent =
+    "Your business currently demonstrates functional market capability, but operational inconsistency is limiting scalable execution, revenue predictability, and long-term growth stability. The diagnostic indicates that growth pressure is beginning to exceed operational structure, resulting in execution friction, dependency on manual oversight, and inconsistent business performance. While the organization is not structurally unstable, its current operating condition is not yet optimized for controlled scaling or institutional-level execution consistency.";
 
-document.getElementById("impact").innerText =
-"This is reducing revenue consistency, lowering conversion rates, and limiting your ability to scale.";
+  document.getElementById("benchmark").textContent =
+    score >= 75
+      ? "Your organization is operating within structured readiness, but deeper review is still recommended before expansion."
+      : score >= 50
+      ? "Your organization is currently operating above early-stage instability, but below scalable institutional readiness."
+      : "Your organization is operating below stable execution readiness and requires correction before aggressive growth activity.";
 
-document.getElementById("ops-impact").innerText =
-"This creates inefficiencies, unclear execution, and inconsistent business performance.";
+  document.getElementById("primaryConstraint").textContent =
+    "Your current operational condition is being constrained by inconsistent execution structure, limited process standardization, and a monetization system that depends heavily on manual coordination rather than controlled operational flow.";
 
-document.getElementById("risk").innerText =
-"If not corrected, your business will remain unstable, difficult to scale, and dependent on inconsistent results.";
+  document.getElementById("rootCause").textContent =
+    "The diagnostic indicates that key operational functions currently rely on reactive execution patterns rather than predefined systems, resulting in inconsistent decision flow, reduced execution clarity, and unstable operational continuity.";
 
-document.getElementById("support").innerHTML =
-"<li>Unclear offer structure</li><li>No consistent conversion system</li><li>Limited operational control</li>";
+  document.getElementById("revenueImpact").textContent =
+    "This operating condition reduces revenue predictability by weakening conversion consistency, slowing execution velocity, and limiting the organization’s ability to scale without increasing operational strain.";
 
-document.getElementById("actions").innerHTML =
-"<li>Define one clear core offer</li><li>Create a structured sales process</li><li>Implement weekly performance tracking</li><li>Align operations with revenue goals</li>";
+  document.getElementById("operationalImpact").textContent =
+    "Current operational friction is increasing dependency on manual oversight, reducing execution efficiency, and creating instability across workflow continuity and performance consistency.";
 
-document.getElementById("outcome").innerText =
-"You will experience improved revenue consistency, clearer execution, and a stronger foundation for scaling.";
+  document.getElementById("riskOutlook").textContent =
+    "If unresolved, the current operational condition may result in scaling resistance, execution fatigue, inconsistent client experience, and increasing structural instability as growth pressure increases.";
 
+  const issues = [
+    "Conversion infrastructure lacks operational consistency",
+    "Revenue generation depends heavily on manual execution",
+    "Workflow continuity is not fully standardized",
+    "Execution visibility remains partially fragmented",
+    "Operational sequencing lacks enforcement structure"
+  ];
+
+  const actions = [
+    "Establish a clearly defined primary monetization pathway",
+    "Implement standardized operational sequencing procedures",
+    "Reduce dependency on reactive execution behavior",
+    "Install measurable execution tracking and reporting systems",
+    "Align operational structure with revenue scalability objectives"
+  ];
+
+  document.getElementById("supportingIssues").innerHTML = issues.map(i => `<li>${i}</li>`).join("");
+  document.getElementById("actionPlan").innerHTML = actions.map(i => `<li>${i}</li>`).join("");
+
+  document.getElementById("expectedOutcome").textContent =
+    "Corrective implementation is expected to improve execution consistency, operational clarity, revenue predictability, and long-term scalability readiness over the next 30–60 days.";
+})();
 </script>
-
 </body>
 </html> 
